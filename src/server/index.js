@@ -1,12 +1,13 @@
 var path = require('path');
 const express = require('express');
+const cors = require('cors');
 const mockAPIResponse = require('./mockAPI.js');
 const dotenv = require('dotenv');
 dotenv.config();
 const apiKey = process.env.API_KEY;
 
 const app = express();
-
+app.use(cors());
 app.use(express.static('dist'));
 
 console.log(__dirname);
