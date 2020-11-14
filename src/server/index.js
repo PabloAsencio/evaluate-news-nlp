@@ -36,15 +36,28 @@ app.post('/analyze', async (req, res) => {
     const data = req.body;
     const text = data.userInput;
     const lang = data.lang;
-    const url = `${baseURL}?key=${apiKey}&lang=${lang}&txt=${querystring.escape(
+    const type = validateURL(text) ? 'url' : 'txt';
+    const url = `${baseURL}?key=${apiKey}&lang=${lang}&${type}=${querystring.escape(
         text
     )}`;
     axios
         .post(url)
         .then((response) => {
-            res.send(response.data);
+            const analysis = response.data;
+            const analysisSummary = {
+                confidence: analysis.confidence,
+                irony: analysis.irony,
+                scoreTag: analysis.score_tag,
+                subjectivity: analysis.subjectivity,
+            };
+            res.send(analysisSummary);
         })
         .catch((error) => {
             console.log(error);
         });
 });
+
+function validateURL(text) {
+    const validURLRegEx = /^(http|https):\/\//i;
+    return validURLRegEx.test(text);
+}
