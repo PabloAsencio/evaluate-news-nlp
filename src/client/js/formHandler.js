@@ -19,7 +19,7 @@ function handleSubmit(event) {
         .then((res) => res.json())
         .then(function (res) {
             console.log(res); // TODO Remove from final version
-            document.getElementById('results').innerHTML = res.subjectivity; // TODO Handle the update of ui in a different file
+            Client.updateUI(res);
         });
 }
 
