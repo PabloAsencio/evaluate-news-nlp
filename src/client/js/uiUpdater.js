@@ -1,3 +1,11 @@
+const fieldsToPrint = {
+    userInput: '',
+    subjectivity: 'Subjectivity: ',
+    irony: 'Irony: ',
+    scoreTag: 'Score Tag: ',
+    confidence: 'Confidence: ',
+};
+
 function updateUI(analysis) {
     document.getElementById('name').value = '';
     const target = document.getElementById('results');
@@ -5,39 +13,34 @@ function updateUI(analysis) {
 
     const results = document.createDocumentFragment();
 
-    const userInput = document.createElement('P');
-    if (analysis.isURL) {
-        const anchor = document.createElement('A');
-        anchor.setAttribute('href', analysis.userInput);
-        anchor.textContent = analysis.userInput;
-        userInput.appendChild(anchor);
-    } else {
-        userInput.textContent = analysis.userInput;
-    }
-    userInput.classList.add('analysis__input');
-    results.appendChild(userInput);
-
-    const scoreTag = document.createElement('P');
-    scoreTag.textContent = `Score Tag: ${analysis.scoreTag}`;
-    scoreTag.classList.add('analysis__score-tag');
-    results.appendChild(scoreTag);
-
-    const confidence = document.createElement('P');
-    confidence.textContent = `Confidence: ${analysis.confidence}`;
-    confidence.classList.add('analysis__confidence');
-    results.appendChild(confidence);
-
-    const irony = document.createElement('P');
-    irony.textContent = `${analysis.irony}`;
-    irony.classList.add('analysis__irony');
-    results.appendChild(irony);
-
-    const subjectivity = document.createElement('P');
-    subjectivity.textContent = `${analysis.subjectivity}`;
-    subjectivity.classList.add('analysis__subjectivity');
-    results.appendChild(subjectivity);
+    populateResults(results, analysis);
 
     target.appendChild(results);
+}
+
+function populateResults(target, analysis) {
+    Object.keys(fieldsToPrint).forEach((key) => {
+        target.appendChild(createAnalysisElement(key, analysis[key]));
+    });
+}
+
+function createAnalysisElement(key, value) {
+    const newElement = document.createElement('P');
+    if (isURL(value)) {
+        const anchor = document.createElement('A');
+        anchor.setAttribute('href', value);
+        anchor.textContent = value;
+        newElement.appendChild(anchor);
+    } else {
+        newElement.textContent = fieldsToPrint[key] + value;
+    }
+    newElement.classList.add(`analysis__${key}`);
+    return newElement;
+}
+
+function isURL(text) {
+    const validURLRegEx = /^(http|https):\/\//i;
+    return validURLRegEx.test(text);
 }
 
 export { updateUI };
