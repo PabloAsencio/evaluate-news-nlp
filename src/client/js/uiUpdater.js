@@ -19,21 +19,25 @@ function updateUI(analysis) {
 
     const scoreTag = document.createElement('P');
     scoreTag.textContent = `Score Tag: ${analysis.scoreTag}`;
+    scoreTag.classList.add('analysis__score-tag');
+    results.appendChild(scoreTag);
 
     const confidence = document.createElement('P');
     confidence.textContent = `Confidence: ${analysis.confidence}`;
+    confidence.classList.add('analysis__confidence');
+    results.appendChild(confidence);
 
     const irony = document.createElement('P');
     irony.textContent = `${analysis.irony}`;
+    irony.classList.add('analysis__irony');
+    results.appendChild(irony);
 
     const subjectivity = document.createElement('P');
     subjectivity.textContent = `${analysis.subjectivity}`;
+    subjectivity.classList.add('analysis__subjectivity');
+    results.appendChild(subjectivity);
 
     target.appendChild(results);
-    target.appendChild(subjectivity);
-    target.appendChild(irony);
-    target.appendChild(scoreTag);
-    target.appendChild(confidence);
 }
 
 export { updateUI };
