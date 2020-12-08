@@ -1,4 +1,3 @@
-import { checkForName } from './js/nameChecker';
 import { handleSubmit } from './js/formHandler';
 import { updateUI } from './js/uiUpdater';
 
@@ -8,4 +7,4 @@ import './styles/footer.scss';
 import './styles/form.scss';
 import './styles/header.scss';
 
-export { checkForName, handleSubmit, updateUI };
+export { handleSubmit, updateUI };
