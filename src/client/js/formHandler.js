@@ -3,7 +3,7 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     const formText = document.getElementById('name').value;
-    const isURL = validateURL(formText);
+    const isURL = Client.isValidURL(formText);
 
     console.log('::: Form Submitted :::');
     fetch('http://localhost:8081/analyze', {
@@ -24,11 +24,6 @@ function handleSubmit(event) {
             res['isURL'] = isURL;
             Client.updateUI(res);
         });
-}
-
-function validateURL(text) {
-    const validURLRegEx = /^(http|https):\/\//i;
-    return validURLRegEx.test(text);
 }
 
 export { handleSubmit };
