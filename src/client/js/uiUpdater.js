@@ -28,8 +28,9 @@ function createAnalysisElement(key, value) {
     const newElement = document.createElement('P');
     if (Client.isValidURL(value)) {
         const anchor = document.createElement('A');
-        anchor.setAttribute('href', value);
-        anchor.textContent = value;
+        const url = value.startsWith('http') ? value : 'https://' + value;
+        anchor.setAttribute('href', url);
+        anchor.textContent = url;
         newElement.appendChild(anchor);
     } else {
         newElement.textContent = fieldsToPrint[key] + value;
