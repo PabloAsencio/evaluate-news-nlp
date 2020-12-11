@@ -1,7 +1,6 @@
 var path = require('path');
 const express = require('express');
 const axios = require('axios');
-const querystring = require('querystring');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mockAPIResponse = require('./mockAPI.js');
@@ -37,7 +36,7 @@ app.post('/analyze', async (req, res) => {
     const text = data.userInput;
     const lang = data.lang;
     const type = validateURL(text) ? 'url' : 'txt';
-    const url = `${baseURL}?key=${apiKey}&lang=${lang}&${type}=${querystring.escape(
+    const url = `${baseURL}?key=${apiKey}&lang=${lang}&${type}=${encodeURIComponent(
         text
     )}`;
     axios
