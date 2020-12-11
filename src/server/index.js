@@ -3,6 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const urlValidator = require('./urlValidator.js');
 const mockAPIResponse = require('./mockAPI.js');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -35,7 +36,7 @@ app.post('/analyze', async (req, res) => {
     const data = req.body;
     const text = data.userInput;
     const lang = data.lang;
-    const type = validateURL(text) ? 'url' : 'txt';
+    const type = urlValidator.isValidURL(text) ? 'url' : 'txt';
     const url = `${baseURL}?key=${apiKey}&lang=${lang}&${type}=${encodeURIComponent(
         text
     )}`;
@@ -55,8 +56,3 @@ app.post('/analyze', async (req, res) => {
             console.log(error);
         });
 });
-
-function validateURL(text) {
-    const validURLRegEx = /^(http|https):\/\//i;
-    return validURLRegEx.test(text);
-}
