@@ -4,7 +4,6 @@ const axios = require('axios');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const urlValidator = require('./urlValidator.js');
-const mockAPIResponse = require('./mockAPI.js');
 const dotenv = require('dotenv');
 dotenv.config();
 const apiKey = process.env.API_KEY;
@@ -26,10 +25,6 @@ app.get('/', function (req, res) {
 // designates what port the app will listen to for incoming requests
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
-});
-
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse);
 });
 
 app.post('/analyze', async (req, res) => {
