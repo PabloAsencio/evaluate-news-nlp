@@ -13,3 +13,13 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+a,
+a:visited {
+    color: inherit;
+}
+
+strong {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
