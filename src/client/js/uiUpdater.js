@@ -8,6 +8,8 @@ const fieldsToPrint = {
 
 function updateUI(analysis) {
     document.getElementById('name').value = '';
+    document.getElementsByTagName('strong')[0].textContent =
+        'Analysis Results:';
     const target = document.getElementById('results');
     target.innerHTML = '';
 
