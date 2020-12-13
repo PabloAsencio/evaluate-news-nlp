@@ -1,3 +1,5 @@
+import { isValidURL } from './urlValidator';
+
 const fieldsToPrint = {
     userInput: '',
     subjectivity: 'Subjectivity: ',
@@ -28,7 +30,7 @@ function populateResults(target, analysis) {
 
 function createAnalysisElement(key, value) {
     const newElement = document.createElement('P');
-    if (Client.isValidURL(value)) {
+    if (isValidURL(value)) {
         const anchor = document.createElement('A');
         const url = value.startsWith('http') ? value : 'https://' + value;
         anchor.setAttribute('href', url);
