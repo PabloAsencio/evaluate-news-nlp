@@ -9,4 +9,8 @@ import './styles/form.scss';
 import './styles/header.scss';
 import './styles/analysis.scss';
 
+document.getElementById('form').addEventListener('submit', handleSubmit);
+document.getElementById('submit').addEventListener('submit', handleSubmit);
+document.getElementById('submit').addEventListener('click', handleSubmit);
+
 export { handleSubmit, updateUI, isValidURL };
