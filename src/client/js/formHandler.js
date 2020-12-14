@@ -8,7 +8,6 @@ function handleSubmit(event) {
     const formText = document.getElementById('name').value;
     const isURL = isValidURL(formText);
 
-    console.log('::: Form Submitted :::');
     fetch('http://localhost:8081/analyze', {
         method: 'POST',
         credentials: 'same-origin',
