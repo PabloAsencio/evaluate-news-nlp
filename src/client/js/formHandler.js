@@ -1,12 +1,14 @@
 import { updateUI } from './uiUpdater';
 import { isValidURL } from './urlValidator';
+import { isValidText } from './textValidator';
 
 function handleSubmit(event) {
     event.preventDefault();
 
     // check what text was put into the form field
-    const formText = document.getElementById('name').value;
+    const formText = document.getElementById('name').value.trim();
     const isURL = isValidURL(formText);
+    const isText = isValidText(formText);
 
     fetch('http://localhost:8081/analyze', {
         method: 'POST',
