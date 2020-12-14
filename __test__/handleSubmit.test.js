@@ -2,6 +2,8 @@ jest.mock('../src/client/js/uiUpdater.js');
 import { updateUI } from '../src/client/js/uiUpdater';
 jest.mock('../src/client/js/urlValidator.js');
 import { isValidURL } from '../src/client/js/urlValidator';
+jest.mock('../src/client/js/textValidator.js');
+import { isValidText } from '../src/client/js/textValidator';
 
 // Mocking fetch. See https://www.leighhalliday.com/mock-fetch-jest
 global.fetch = jest.fn().mockImplementation(() =>
@@ -32,6 +34,10 @@ describe('Testing the submit functionality', () => {
     test('Testing that handleSubmit calls isValidURL with the correct argument', () => {
         document.getElementById('submit').click();
         expect(isValidURL).toHaveBeenCalledWith('text');
+    });
+    test('Testing that handleSubmit calls isValidText with the correct argument', () => {
+        document.getElementById('submit').click();
+        expect(isValidText).toHaveBeenCalledWith('text');
     });
     test('Testing that handleSubmit calls fetch', () => {
         document.getElementById('submit').click();
