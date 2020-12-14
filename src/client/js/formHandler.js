@@ -1,9 +1,12 @@
+import { updateUI } from './uiUpdater';
+import { isValidURL } from './urlValidator';
+
 function handleSubmit(event) {
     event.preventDefault();
 
     // check what text was put into the form field
     const formText = document.getElementById('name').value;
-    const isURL = Client.isValidURL(formText);
+    const isURL = isValidURL(formText);
 
     console.log('::: Form Submitted :::');
     fetch('http://localhost:8081/analyze', {
@@ -21,8 +24,7 @@ function handleSubmit(event) {
         .then((res) => res.json())
         .then(function (res) {
             res['userInput'] = formText;
-            res['isURL'] = isURL;
-            Client.updateUI(res);
+            updateUI(res);
         });
 }
 
